@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>New Office Virtual - Domicílio Fiscal e Escritório Virtual em Vila Velha</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#005fa3",
+                        "primary-dark": "#004a80",
+                        "secondary": "#14b8a6",
+                        "on-primary": "#ffffff",
+                        "surface": "#ffffff",
+                        "surface-alt": "#f5faff",
+                        "on-surface": "#001e3c",
+                        "on-surface-variant": "#475569",
+                        "outline-variant": "#e2e8f0",
+                        "accent": "#3b82f6",
+                    },
+                    borderRadius: {
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "4xl": "2.5rem",
+                    },
+                    spacing: {
+                        "section-gap": "100px",
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'float': 'float 5s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: #001e3c;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .mobile-menu-open {
+            overflow: hidden;
+        }
+
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-shadow {
+            shadow-[0_10px_30px_rgba(0, 95, 163, 0.2)];
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface font-['Outfit'] antialiased selection:bg-primary selection:text-on-primary">
+
+    <!-- Navbar -->
+    <header class="glass-nav sticky top-0 z-50 border-b border-outline-variant/30">
+        <div class="max-w-[1280px] mx-auto flex justify-between items-center px-6 py-4">
+            <a href="#hero" class="flex items-center">
+                <img src="logo.png" alt="New Office Virtual" class="h-10 w-auto">
+            </a>
+
+            <nav class="hidden md:flex gap-10 items-center">
+                <a class="text-primary font-bold text-sm" href="#hero">Início</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-medium text-sm"
+                    href="#servicos">Serviços</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-medium text-sm"
+                    href="#planos">Planos</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-medium text-sm"
+                    href="#sobre">FAQ</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-medium text-sm"
+                    href="#contato">Contato</a>
+            </nav>
+
+            <div class="flex items-center gap-6">
+                <a href="#planos"
+                    class="hidden md:inline-flex items-center justify-center h-11 px-7 rounded-lg bg-primary text-white font-bold text-sm hover:bg-primary-dark transition-all shadow-lg shadow-primary/20">
+                    Começar Agora
+                </a>
+                <button id="menu-toggle" class="md:hidden text-primary p-2">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Overlay -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-white z-[100] translate-x-full md:hidden flex flex-col p-8 transition-transform">
+            <div class="flex justify-between items-center mb-16">
+                <img src="logo.png" alt="Logo" class="h-10 w-auto">
+                <button id="menu-close" class="text-primary p-2">
+                    <span class="material-symbols-outlined text-4xl">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-8 text-2xl font-bold text-on-surface">
+                <a href="#hero" class="mobile-link">Início</a>
+                <a href="#servicos" class="mobile-link">Serviços</a>
+                <a href="#planos" class="mobile-link">Planos</a>
+                <a href="#sobre" class="mobile-link">FAQ</a>
+                <a href="#contato" class="mobile-link">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="pt-20 pb-section-gap px-6 max-w-[1280px] mx-auto overflow-hidden" id="hero">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="flex flex-col gap-8 animate-fade-in-up">
+                    <div
+                        class="inline-flex items-center gap-2 bg-primary/5 text-primary px-4 py-1.5 rounded-full w-fit border border-primary/10">
+                        <span class="text-[11px] font-bold uppercase tracking-wider">Domicílio fiscal com menor carga
+                            tributária do ES
+                        </span>
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-extrabold text-on-surface leading-[1.1] tracking-tight">
+                        O Domicílio Fiscal com <span class="text-primary">Incentivo Real</span> em Vila Velha.
+                    </h1>
+                    <p class="text-lg text-on-surface-variant leading-relaxed max-w-xl">
+                        Reduza legalmente a carga tributária da sua empresa. Mais que um endereço de prestígio no
+                        coração de Vila Velha, oferecemos a estratégia fiscal que seu negócio precisa para crescer com
+                        segurança.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                        <a href="https://api.whatsapp.com/send/?phone=5527995285539" target="_blank"
+                            class="bg-primary text-white font-bold h-14 px-8 rounded-lg shadow-xl shadow-primary/20 hover:bg-primary-dark transition-all flex items-center justify-center gap-3 active:scale-95">
+                            Falar com especialista
+                        </a>
+                        <a href="#planos"
+                            class="bg-white text-primary border border-outline-variant font-bold h-14 px-8 rounded-lg hover:bg-surface-alt transition-all flex items-center justify-center active:scale-95">
+                            Ver Planos
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/30">
+                        <img alt="Escritório Moderno New Office" class="w-full h-auto object-cover" src="hero.png">
+                    </div>
+                    <!-- Floating Card -->
+                    <div
+                        class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-2xl border border-outline-variant/50 flex items-center gap-4 animate-float">
+                        <div
+                            class="w-12 h-12 bg-[#14b8a6]/10 rounded-lg flex items-center justify-center text-[#14b8a6]">
+                            <span class="material-symbols-outlined">verified</span>
+                        </div>
+                        <div>
+                            <p
+                                class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider leading-none mb-1">
+                                Economia Tributária</p>
+                            <p class="text-sm font-bold text-on-surface leading-none">Comprovada</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advantages Section -->
+        <section class="py-section-gap bg-surface-alt" id="vantagens">
+            <div class="max-w-[1280px] mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-on-surface mb-4">Vantagens que impactam o seu
+                        caixa.</h2>
+                    <p class="text-on-surface-variant font-medium max-w-2xl mx-auto">Reduza custos fixos imediatamente,
+                        eliminando gastos com aluguel comercial, IPTU, condomínio e infraestrutura, mantendo uma
+                        presença comercial de elite em Vila Velha.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Big Blue Card -->
+                    <div
+                        class="md:col-span-2 bg-primary text-white p-10 rounded-2xl shadow-xl relative overflow-hidden reveal">
+                        <div class="relative z-10">
+                            <div class="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mb-8">
+                                <span class="material-symbols-outlined text-white text-3xl">account_balance</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4">Incentivo Fiscal Real</h3>
+                            <p class="text-white/80 font-medium mb-8 max-w-md">Somos localizados em uma zona estratégica
+                                com alíquota de ISS reduzida, garantindo que sua empresa pague menos impostos legalmente
+                                ao se registrar em nosso endereço.</p>
+                            <a href="#contato"
+                                class="inline-flex items-center gap-2 font-bold hover:gap-4 transition-all border-b border-white/30 pb-1 text-sm">Entenda
+                                o plano <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+                        </div>
+                        <!-- Abstract shapes for flair -->
+                        <div
+                            class="absolute right-0 top-0 w-48 h-48 bg-white/5 -translate-y-1/2 translate-x-1/2 rounded-full blur-3xl">
+                        </div>
+                        <div class="absolute right-10 bottom-10 opacity-10">
+                            <span class="material-symbols-outlined text-[10rem]">assured_workload</span>
+                        </div>
+                    </div>
+
+                    <!-- White Card 1 -->
+                    <div
+                        class="bg-white p-8 rounded-2xl border border-outline-variant/50 shadow-sm hover:shadow-md transition-all reveal">
+                        <div class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-primary text-2xl">location_on</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Coração de Vila Velha</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Endereço de prestígio no Centro de
+                            Vila Velha, facilitando a logística, o networking e a credibilidade da sua empresa perante o
+                            mercado.</p>
+                    </div>
+
+                    <!-- White Card 2 -->
+                    <div
+                        class="bg-white p-8 rounded-2xl border border-outline-variant/50 shadow-sm hover:shadow-md transition-all reveal">
+                        <div class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-primary text-2xl">mail</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Gestão de Correspondência</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Recebimento, digitalização e
+                            notificação imediata de todas as suas correspondências fiscais e comerciais com total
+                            segurança.</p>
+                    </div>
+
+                    <!-- White Card 3 -->
+                    <div
+                        class="bg-white p-8 rounded-2xl border border-outline-variant/50 shadow-sm hover:shadow-md transition-all reveal">
+                        <div class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-primary text-2xl">meeting_room</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Salas de Reunião</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Acesso sob demanda a salas
+                            climatizadas e equipadas para receber clientes e parceiros sempre que precisar de um espaço
+                            físico.</p>
+                    </div>
+
+                    <!-- White Card 4 -->
+                    <div
+                        class="bg-white p-8 rounded-2xl border border-outline-variant/50 shadow-sm hover:shadow-md transition-all reveal">
+                        <div class="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-primary text-2xl">support_agent</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Atendimento Premium</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Secretariado dedicado para atender
+                            suas chamadas e recepção física para dar as boas-vindas aos seus visitantes em nome da sua
+                            marca.</p>
+                    </div>
+                </div>
+        </section>
+        <section class="py-6 mt-1 bg-on-surface text-white relative overflow-hidden">
+            <!-- Subtle Gradient Overlays -->
+            <div class="absolute inset-0 opacity-20 pointer-events-none">
+                <div
+                    class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[140px] -translate-y-1/2">
+                </div>
+                <div
+                    class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px] translate-y-1/2">
+                </div>
+            </div>
+
+            <div class="max-w-[1280px] mx-auto px-6 relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-center">
+
+                    <!-- Stat 1 -->
+                    <div class="flex flex-col items-center text-center reveal">
+                        <span class="block text-8xl font-black tracking-tighter text-white mb-4">9</span>
+                        <div class="space-y-1">
+                            <p class="text-sm font-black uppercase tracking-[0.4em] text-white/70">Anos de Excelência
+                            </p>
+                            <p class="text-xs text-white/40 font-bold uppercase tracking-widest">Atendimento Corporativo
+                                ES</p>
+                        </div>
+                    </div>
+
+                    <!-- Stat 2 -->
+                    <div class="flex flex-col items-center text-center md:border-x border-white/5 md:px-12 reveal">
+                        <span class="block text-8xl font-black tracking-tighter text-white mb-4">300+</span>
+                        <div class="space-y-1">
+                            <p class="text-sm font-black uppercase tracking-[0.4em] text-white/70">Empresas Parceiras
+                            </p>
+                            <p class="text-xs text-white/40 font-bold uppercase tracking-widest">Crescendo junto conosco
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Stat 3 -->
+                    <div class="flex flex-col items-center text-center reveal">
+                        <span class="block text-8xl font-black tracking-tighter text-white mb-4">240</span>
+                        <div class="space-y-1">
+                            <p class="text-sm font-black uppercase tracking-[0.4em] text-white/70">Estações Modernas</p>
+                            <p class="text-xs text-white/40 font-bold uppercase tracking-widest">Prontas para seu
+                                negócio</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Services Section -->
+        <section class="py-section-gap bg-white" id="servicos">
+            <div class="max-w-[1280px] mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4">Soluções para sua
+                        empresa decolar</p>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-on-surface">Tudo que você precisa em um só
+                        lugar.</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-12">
+                    <!-- Service 1 -->
+                    <div class="flex flex-col items-center text-center reveal">
+                        <div
+                            class="w-16 h-16 bg-primary/5 text-primary rounded-full flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-3xl">business</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Escritório Virtual</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Endereço comercial de prestígio
+                            para seu material de marketing, cartões e site, com gestão de correspondência inclusa.
+                        </p>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="flex flex-col items-center text-center reveal">
+                        <div
+                            class="w-16 h-16 bg-primary/5 text-primary rounded-full flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-3xl">gavel</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Domicílio Fiscal</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Registro legal da sua empresa
+                            (CNPJ) em nosso endereço, com toda a documentação necessária para a prefeitura e órgãos
+                            competentes.</p>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="flex flex-col items-center text-center reveal">
+                        <div
+                            class="w-16 h-16 bg-primary/5 text-primary rounded-full flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-3xl">groups</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Coworking</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Espaços de trabalho
+                            compartilhados e modernos para você produzir mais, com internet de alta velocidade e
+                            café cortesia.</p>
+                    </div>
+                    <!-- Service 4 -->
+                    <div class="flex flex-col items-center text-center reveal">
+                        <div
+                            class="w-16 h-16 bg-primary/5 text-primary rounded-full flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-3xl">meeting_room</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Locação de Auditório</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Espaço completo para seus
+                            treinamentos, eventos ou palestras, com equipamentos audiovisuais e climatização.</p>
+                    </div>
+                    <!-- Service 5 -->
+                    <div class="flex flex-col items-center text-center reveal">
+                        <div
+                            class="w-16 h-16 bg-primary/5 text-primary rounded-full flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-3xl">lock</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Sala Privativa</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Salas exclusivas para sua equipe,
+                            com total privacidade e toda a infraestrutura inclusa para você não se preocupar com
+                            nada.</p>
+                    </div>
+                    <!-- Service 6 -->
+                    <div class="flex flex-col items-center text-center reveal">
+                        <div
+                            class="w-16 h-16 bg-primary/5 text-primary rounded-full flex items-center justify-center mb-6">
+                            <span class="material-symbols-outlined text-3xl">pin_drop</span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Localização</h3>
+                        <p class="text-sm text-on-surface-variant leading-relaxed">Posicionamento estratégico no
+                            Centro de Vila Velha, próximo a bancos, cartórios e principais centros comerciais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="py-section-gap bg-surface-alt overflow-hidden" id="localizacao">
+            <div class="max-w-[1280px] mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="relative reveal h-[450px] w-full">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3741.145044591278!2d-40.29790272397265!3d-20.33562585106923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb8163b97b66d93%3A0x5e52ca21ba349e9a!2sNew%20Office%20Virtual%20-%20Centro%20Empresarial!5e0!3m2!1spt-BR!2sbr!4v1777560546707!5m2!1spt-BR!2sbr"
+                            class="w-full h-full rounded-3xl shadow-xl border-0" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="reveal">
+                        <p class="text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4">Onde estamos</p>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-on-surface mb-6 leading-tight">
+                            Estabeleça sua sede na região que mais cresce.</h2>
+                        <p class="text-on-surface-variant font-medium mb-10 leading-relaxed">Nossa unidade está
+                            localizada no coração estratégico de Vila Velha, com fácil acesso ao centro comercial e
+                            conectividade com as principais vias metropolitanas do Espírito Santo.</p>
+
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-4 text-on-surface font-bold">
+                                <span class="material-symbols-outlined text-primary"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                5 Minutos da Terceira Ponte
+                            </li>
+                            <li class="flex items-center gap-4 text-on-surface font-bold">
+                                <span class="material-symbols-outlined text-primary"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Estacionamento Facilitado no Local
+                            </li>
+                            <li class="flex items-center gap-4 text-on-surface font-bold">
+                                <span class="material-symbols-outlined text-primary"
+                                    style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Região com Alta Densidade de Negócios
+                            </li>
+                        </ul>
+                        <a href="https://www.google.com/maps/search/?api=1&query=New+Office+Virtual+Centro+Empresarial+Vila+Velha"
+                            target="_blank"
+                            class="mt-10 inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all">
+                            Ver no Google Maps <span class="material-symbols-outlined">open_in_new</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Planos -->
+        <section class="py-section-gap bg-white" id="planos">
+            <div class="max-w-[1280px] mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-on-surface mb-4">Planos Transparentes</h2>
+                    <p class="text-on-surface-variant font-medium">Escolha a solução que melhor se adapta ao momento
+                        da sua empresa.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                    <!-- Essencial -->
+                    <div
+                        class="bg-white p-8 rounded-2xl border border-outline-variant/50 flex flex-col hover:shadow-xl transition-all reveal">
+                        <h3 class="text-xl font-bold text-on-surface mb-2">Essencial</h3>
+                        <p class="text-xs text-on-surface-variant mb-8 font-medium">Ideal para quem busca endereço
+                            comercial e prestígio.</p>
+                        <div class="mb-8">
+                            <span class="text-4xl font-extrabold text-primary">R$ 99</span><span
+                                class="text-on-surface-variant font-bold text-sm">/mês</span>
+                        </div>
+                        <ul class="space-y-4 mb-10 grow font-medium text-sm">
+                            <li class="flex items-center gap-3"><span
+                                    class="material-symbols-outlined text-primary text-sm">done</span> Endereço em
+                                cartões e site</li>
+                            <li class="flex items-center gap-3"><span
+                                    class="material-symbols-outlined text-primary text-sm">done</span> Gestão de
+                                Correspondência</li>
+                        </ul>
+                        <a href="#contato" onclick="setPlan('Plano Essencial')"
+                            class="w-full py-4 text-center rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-all">Assinar
+                            Essencial</a>
+                    </div>
+
+                    <!-- Plano Escritório (Destaque) -->
+                    <div
+                        class="bg-primary p-10 rounded-2xl shadow-2xl flex flex-col md:scale-105 z-10 border border-primary relative reveal text-white">
+                        <div
+                            class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#25D366] text-white px-5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                            Mais Vendido</div>
+                        <h3 class="text-2xl font-bold mb-2">Plano Escritório</h3>
+                        <p class="text-xs text-white/70 mb-8 font-medium">A solução completa para o seu domicílio
+                            fiscal e comercial.</p>
+                        <div class="mb-8">
+                            <span class="text-5xl font-extrabold text-white">R$ 199</span><span
+                                class="text-white/70 font-bold text-sm">/mês</span>
+                        </div>
+                        <ul class="space-y-4 mb-10 grow font-medium text-sm">
+                            <li class="flex items-center gap-3"><span
+                                    class="material-symbols-outlined text-white text-sm">done</span> Endereço Fiscal
+                                & Comercial</li>
+                            <li class="flex items-center gap-3"><span
+                                    class="material-symbols-outlined text-white text-sm">done</span> Notificações
+                                via WhatsApp</li>
+                            <li class="flex items-center gap-3"><span
+                                    class="material-symbols-outlined text-white text-sm">done</span> Atendimento
+                                Personalizado</li>
+                            <li class="flex items-center gap-3"><span
+                                    class="material-symbols-outlined text-white text-sm">done</span> 4h de Sala de
+                                Reunião</li>
+                        </ul>
+                        <a href="#contato" onclick="setPlan('Plano Escritório')"
+                            class="w-full py-4 text-center rounded-lg bg-white text-primary font-bold shadow-xl hover:bg-surface-alt transition-all">Assinar
+                            Agora</a>
+                    </div>
+
+                    <!-- Premium -->
+                    <div
+                        class="bg-white p-8 rounded-2xl border border-outline-variant/50 flex flex-col hover:shadow-xl transition-all reveal">
+                        <h3 class="text-xl font-bold text-on-surface mb-2">Premium</h3>
+                        <p class="text-xs text-on-surface-variant mb-8 font-medium">Para empresas que precisam de
+                            presença e apoio máximo.</p>
+                        <div class="mb-8">
+                            <span class="text-4xl font-extrabold text-primary">R$ 349</span><span
+                                class="text-on-surface-variant font-bold text-sm">/mês</span>
+                        </div>
+                        <ul class="space-y-4 mb-10 grow font-medium text-sm">
+                            <li class="flex items-center gap-3"><span
+                                    class="material-symbols-outlined text-primary text-sm">done</span> Tudo do Plano
+                                Escritório</li>
+                            <li class="flex items-center gap-3"><span
+                                    class="material-symbols-outlined text-primary text-sm">done</span> 12h de Sala
+                                de Reunião</li>
+                            <li class="flex items-center gap-3"><span
+                                    class="material-symbols-outlined text-primary text-sm">done</span> Apoio
+                                Administrativo Dedicado</li>
+                        </ul>
+                        <a href="#contato" onclick="setPlan('Plano Premium')"
+                            class="w-full py-4 text-center rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-all">Assinar
+                            Premium</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparativo Detalhado -->
+        <section class="py-section-gap bg-surface-alt">
+            <div class="max-w-[1280px] mx-auto px-6 overflow-x-auto">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl font-extrabold text-on-surface mb-4">Comparativo Detalhado</h2>
+                </div>
+                <table class="w-full border-collapse bg-white rounded-2xl shadow-sm overflow-hidden reveal">
+                    <thead>
+                        <tr class="bg-primary/5 text-primary text-sm uppercase tracking-widest">
+                            <th class="p-6 text-left font-bold">Recurso</th>
+                            <th class="p-6 text-center font-bold">Essencial</th>
+                            <th class="p-6 text-center font-bold">Escritório</th>
+                            <th class="p-6 text-center font-bold">Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm font-medium text-on-surface-variant">
+                        <tr class="border-b border-outline-variant/30">
+                            <td class="p-6">Domicílio Fiscal</td>
+                            <td class="p-6 text-center text-red-500"><span
+                                    class="material-symbols-outlined">close</span></td>
+                            <td class="p-6 text-center text-primary"><span class="material-symbols-outlined">done</span>
+                            </td>
+                            <td class="p-6 text-center text-primary"><span class="material-symbols-outlined">done</span>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-outline-variant/30">
+                            <td class="p-6">Endereço Comercial</td>
+                            <td class="p-6 text-center text-primary"><span class="material-symbols-outlined">done</span>
+                            </td>
+                            <td class="p-6 text-center text-primary"><span class="material-symbols-outlined">done</span>
+                            </td>
+                            <td class="p-6 text-center text-primary"><span class="material-symbols-outlined">done</span>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-outline-variant/30">
+                            <td class="p-6">Gestão de Correspondência</td>
+                            <td class="p-6 text-center text-primary"><span class="material-symbols-outlined">done</span>
+                            </td>
+                            <td class="p-6 text-center text-primary"><span class="material-symbols-outlined">done</span>
+                            </td>
+                            <td class="p-6 text-center text-primary"><span class="material-symbols-outlined">done</span>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-outline-variant/30">
+                            <td class="p-6">Notificação via WhatsApp</td>
+                            <td class="p-6 text-center text-red-500"><span
+                                    class="material-symbols-outlined">close</span></td>
+                            <td class="p-6 text-center text-primary"><span class="material-symbols-outlined">done</span>
+                            </td>
+                            <td class="p-6 text-center text-primary"><span class="material-symbols-outlined">done</span>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-outline-variant/30">
+                            <td class="p-6">Salas de Reunião</td>
+                            <td class="p-6 text-center">R$ 50/h</td>
+                            <td class="p-6 text-center">4h Incluídas</td>
+                            <td class="p-6 text-center">12h Incluídas</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6">Apoio Administrativo</td>
+                            <td class="p-6 text-center text-red-500"><span
+                                    class="material-symbols-outlined">close</span></td>
+                            <td class="p-6 text-center text-red-500"><span
+                                    class="material-symbols-outlined">close</span></td>
+                            <td class="p-6 text-center text-primary"><span class="material-symbols-outlined">done</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="py-section-gap bg-white" id="sobre">
+            <div class="max-w-[1000px] mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl font-extrabold text-on-surface mb-4">Perguntas Frequentes</h2>
+                    <p class="text-on-surface-variant font-medium">Tudo o que você precisa saber sobre nossos
+                        serviços.</p>
+                </div>
+                <div class="space-y-4 reveal">
+                    <details
+                        class="group bg-surface-alt rounded-xl overflow-hidden border border-outline-variant/30 transition-all">
+                        <summary class="flex cursor-pointer items-center justify-between p-6 font-bold text-on-surface">
+                            O que é um Domicílio Fiscal?
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-open:-rotate-180 text-primary">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-on-surface-variant text-sm font-medium">
+                            É o endereço oficial da sua empresa perante os órgãos públicos para registro de CNPJ e
+                            alvará, permitindo regularidade legal total.
+                        </div>
+                    </details>
+                    <details
+                        class="group bg-surface-alt rounded-xl overflow-hidden border border-outline-variant/30 transition-all">
+                        <summary class="flex cursor-pointer items-center justify-between p-6 font-bold text-on-surface">
+                            Posso usar o endereço para material gráfico?
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-open:-rotate-180 text-primary">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-on-surface-variant text-sm font-medium">
+                            Sim! Todos os nossos planos permitem o uso do endereço comercial em cartões de visita,
+                            sites, redes sociais e Google Meu Negócio.
+                        </div>
+                    </details>
+                    <details
+                        class="group bg-surface-alt rounded-xl overflow-hidden border border-outline-variant/30 transition-all">
+                        <summary class="flex cursor-pointer items-center justify-between p-6 font-bold text-on-surface">
+                            Como recebo minhas correspondências?
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-open:-rotate-180 text-primary">expand_more</span>
+                        </summary>
+                        <div class="px-6 pb-6 text-on-surface-variant text-sm font-medium">
+                            Nossa equipe recebe suas cartas, digitaliza (se autorizado) e notifica você
+                            imediatamente via WhatsApp ou E-mail.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Carousel -->
+        <section class="py-section-gap bg-surface-alt overflow-hidden">
+            <div class="max-w-[1280px] mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl font-extrabold text-on-surface mb-4">Resultados que falam por si</h2>
+                    <p class="text-on-surface-variant font-medium">Confira o que dizem os empreendedores que já fazem
+                        parte da New Office.</p>
+                </div>
+
+                <div class="relative group">
+                    <div id="testimonial-container"
+                        class="flex gap-8 overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth pb-8">
+                        <!-- Testimonial 1 -->
+                        <div
+                            class="min-w-full md:min-w-[400px] snap-center bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/30 reveal">
+                            <div class="flex text-[#FBBC04] mb-4">
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                            <p class="text-sm text-on-surface-variant italic mb-6 leading-relaxed">"O Domicílio Fiscal
+                                deles facilitou muito a abertura da minha empresa de consultoria. Processo rápido e
+                                suporte nota 10!"</p>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xs">
+                                    RP</div>
+                                <div>
+                                    <p class="text-xs font-bold text-on-surface">Rafael Prado</p>
+                                    <p class="text-[10px] text-on-surface-variant uppercase font-bold">Consultor
+                                        Financeiro</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 2 -->
+                        <div
+                            class="min-w-full md:min-w-[400px] snap-center bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/30 reveal">
+                            <div class="flex text-[#FBBC04] mb-4">
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                            <p class="text-sm text-on-surface-variant italic mb-6 leading-relaxed">"Uso a sala de
+                                reunião com frequência para atender meus clientes. A localização no Centro de Vila Velha
+                                é perfeita."</p>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xs">
+                                    MB</div>
+                                <div>
+                                    <p class="text-xs font-bold text-on-surface">Marina Barros</p>
+                                    <p class="text-[10px] text-on-surface-variant uppercase font-bold">Advogada</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 3 -->
+                        <div
+                            class="min-w-full md:min-w-[400px] snap-center bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/30 reveal">
+                            <div class="flex text-[#FBBC04] mb-4">
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                            <p class="text-sm text-on-surface-variant italic mb-6 leading-relaxed">"Economizei muito
+                                saindo de um aluguel caro para o escritório virtual. A gestão de correspondência
+                                funciona muito bem."</p>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xs">
+                                    AL</div>
+                                <div>
+                                    <p class="text-xs font-bold text-on-surface">André Lima</p>
+                                    <p class="text-[10px] text-on-surface-variant uppercase font-bold">Agência de
+                                        Marketing</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 4 -->
+                        <div
+                            class="min-w-full md:min-w-[400px] snap-center bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/30 reveal">
+                            <div class="flex text-[#FBBC04] mb-4">
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                            <p class="text-sm text-on-surface-variant italic mb-6 leading-relaxed">"Atendimento
+                                impecável e estrutura de ponta. Recomendo para qualquer profissional que queira
+                                profissionalizar sua imagem."</p>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xs">
+                                    CF</div>
+                                <div>
+                                    <p class="text-xs font-bold text-on-surface">Carla Fonseca</p>
+                                    <p class="text-[10px] text-on-surface-variant uppercase font-bold">Arquiteta</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 5 -->
+                        <div
+                            class="min-w-full md:min-w-[400px] snap-center bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/30 reveal">
+                            <div class="flex text-[#FBBC04] mb-4">
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined text-sm"
+                                    style="font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+                            <p class="text-sm text-on-surface-variant italic mb-6 leading-relaxed">"O melhor
+                                custo-benefício de Vila Velha. A transição para o modelo virtual foi extremamente
+                                tranquila graças a eles."</p>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-xs">
+                                    RS</div>
+                                <div>
+                                    <p class="text-xs font-bold text-on-surface">Ricardo Silva</p>
+                                    <p class="text-[10px] text-on-surface-variant uppercase font-bold">Desenvolvedor</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato -->
+        <section class="py-section-gap px-6" id="contato">
+            <div class="max-w-[1280px] mx-auto">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-on-surface mb-4">Envie uma mensagem</h2>
+                    <p class="text-on-surface-variant font-medium">Nossa equipe entrará em contato em menos de 24
+                        horas.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Form -->
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border border-outline-variant/30 reveal">
+                        <form id="contact-form" class="space-y-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Nome
+                                    Completo</label>
+                                <input required type="text" placeholder="Seu nome"
+                                    class="w-full p-4 bg-surface-alt border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">E-mail</label>
+                                    <input required type="email" placeholder="seu@email.com"
+                                        class="w-full p-4 bg-surface-alt border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                                </div>
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">WhatsApp</label>
+                                    <input required type="tel" placeholder="(27) 99999-9999"
+                                        class="w-full p-4 bg-surface-alt border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Plano
+                                    de Interesse</label>
+                                <select id="interest"
+                                    class="w-full p-4 bg-surface-alt border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-bold">
+                                    <option value="Plano Essencial">Plano Essencial</option>
+                                    <option value="Plano Escritório" selected>Plano Escritório</option>
+                                    <option value="Plano Premium">Plano Premium</option>
+                                    <option value="Apenas Dúvida">Quero tirar uma dúvida</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label
+                                    class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Mensagem</label>
+                                <textarea rows="4" placeholder="Como podemos ajudar?"
+                                    class="w-full p-4 bg-surface-alt border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full py-5 bg-primary text-white font-bold rounded-lg shadow-xl hover:bg-primary-dark transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
+                                Enviar Mensagem
+                                <span class="material-symbols-outlined">send</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="flex flex-col justify-center gap-12 reveal">
+                        <h3 class="text-2xl font-bold text-on-surface">Informações de Contato</h3>
+                        <div class="space-y-8">
+                            <div class="flex items-start gap-6">
+                                <div
+                                    class="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined">location_on</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-on-surface">Endereço Principal</p>
+                                    <p class="text-sm text-on-surface-variant">Av. Jerônimo Monteiro, 500 - Centro
+                                        Vila Velha, ES, 29100-000</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-6">
+                                <div
+                                    class="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined">call</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-on-surface">WhatsApp Oficial</p>
+                                    <p class="text-sm text-on-surface-variant">(27) 99528-5539</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-6">
+                                <div
+                                    class="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined">mail</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-on-surface">E-mail</p>
+                                    <p class="text-sm text-on-surface-variant">contato@newofficevirtual.com.br</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://api.whatsapp.com/send/?phone=5527995285539" target="_blank"
+        class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-[#25D366] text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+    </a>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t border-outline-variant/30">
+        <div class="max-w-[1280px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <img src="logo.png" alt="Logo" class="h-8 w-auto opacity-80">
+            <nav class="flex gap-8 text-xs font-bold text-on-surface-variant uppercase tracking-widest">
+                <a href="#hero" class="hover:text-primary transition-colors">Termos de Uso</a>
+                <a href="#hero" class="hover:text-primary transition-colors">Privacidade</a>
+                <a href="#hero" class="hover:text-primary transition-colors">FAQ</a>
+            </nav>
+            <p class="text-[10px] font-bold text-on-surface-variant/50 uppercase tracking-[0.3em]">© 2024 New Office
+                Virtual. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Mobile
+        const toggle = document.getElementById('menu-toggle');
+        const close = document.getElementById('menu-close');
+        const menu = document.getElementById('mobile-menu');
+        const body = document.body;
+
+        function toggleMenu() {
+            menu.classList.toggle('translate-x-full');
+            body.classList.toggle('mobile-menu-open');
+        }
+
+        toggle.addEventListener('click', toggleMenu);
+        close.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Set Plan in Form
+        function setPlan(planName) {
+            document.getElementById('interest').value = planName;
+        }
+
+        // Reveal Animations
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Feedback formulário
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const original = btn.innerHTML;
+            btn.innerHTML = 'Enviando...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = 'Mensagem Enviada! <span class="material-symbols-outlined">check_circle</span>';
+                btn.classList.replace('bg-primary', 'bg-secondary');
+                e.target.reset();
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.classList.replace('bg-secondary', 'bg-primary');
+                    btn.disabled = false;
+                }, 4000);
+            }, 1500);
+        });
+
+        // Testimonial Carousel Auto-scroll
+        const container = document.getElementById('testimonial-container');
+        let isPaused = false;
+
+        container.addEventListener('mouseenter', () => isPaused = true);
+        container.addEventListener('mouseleave', () => isPaused = false);
+
+        setInterval(() => {
+            if (!isPaused) {
+                const cardWidth = container.querySelector('div').offsetWidth + 32; // width + gap
+                if (container.scrollLeft + container.offsetWidth >= container.scrollWidth - 10) {
+                    container.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    container.scrollBy({ left: cardWidth, behavior: 'smooth' });
+                }
+            }
+        }, 4000);
+    </script>
+</body>
+
+</html>
