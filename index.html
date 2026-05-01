@@ -140,13 +140,38 @@
         }
 
         #mobile-menu {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        #mobile-menu.active {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .bottom-nav-glass {
             background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(0, 95, 163, 0.1);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .animate-whatsapp {
+            animation: pulse-whatsapp 2s infinite;
         }
 
         .reveal {
@@ -158,10 +183,6 @@
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        .btn-shadow {
-            shadow-[0_10px_30px_rgba(0, 95, 163, 0.2)];
         }
 
         .scrollbar-hide::-webkit-scrollbar {
@@ -1002,7 +1023,7 @@
 
     <!-- Menu Mobile Overlay -->
     <div id="mobile-menu"
-        class="fixed inset-0 bg-white z-[100] translate-x-full md:hidden flex flex-col p-8 transition-transform">
+        class="fixed inset-0 bg-white z-[100] translate-x-full md:hidden flex flex-col p-8 transition-all">
         <div class="flex justify-between items-center mb-16">
             <img src="logo.png" alt="Logo" class="h-10 w-auto">
             <button id="menu-close" class="text-primary p-2">
@@ -1010,17 +1031,65 @@
             </button>
         </div>
         <nav class="flex flex-col gap-8 text-2xl font-bold text-on-surface">
-            <a href="#hero" class="mobile-link">Início</a>
-            <a href="#servicos" class="mobile-link">Serviços</a>
-            <a href="#planos" class="mobile-link">Planos</a>
-            <a href="#sobre" class="mobile-link">FAQ</a>
-            <a href="#contato" class="mobile-link">Contato</a>
+            <a href="#hero" class="mobile-link flex items-center gap-4">
+                <span class="material-symbols-outlined">home</span> Início
+            </a>
+            <a href="#servicos" class="mobile-link flex items-center gap-4">
+                <span class="material-symbols-outlined">grid_view</span> Serviços
+            </a>
+            <a href="#planos" class="mobile-link flex items-center gap-4">
+                <span class="material-symbols-outlined">payments</span> Planos
+            </a>
+            <a href="#sobre" class="mobile-link flex items-center gap-4">
+                <span class="material-symbols-outlined">quiz</span> FAQ
+            </a>
+            <a href="#contato" class="mobile-link flex items-center gap-4">
+                <span class="material-symbols-outlined">mail</span> Contato
+            </a>
         </nav>
+        <div class="mt-auto pt-8 border-t border-outline-variant">
+            <p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Fale Conosco</p>
+            <a href="https://api.whatsapp.com/send/?phone=5527995285539" target="_blank"
+                class="flex items-center gap-4 text-primary font-bold">
+                <span class="material-symbols-outlined">call</span> (27) 99528-5539
+            </a>
+        </div>
     </div>
 
-    <!-- Floating WhatsApp -->
+    <!-- Bottom Navigation (Mobile Only) -->
+    <div class="fixed bottom-0 left-0 right-0 z-[80] md:hidden bottom-nav-glass px-6 py-3 flex justify-between items-center shadow-[0_-10px_25px_rgba(0,0,0,0.05)]">
+        <a href="#hero" class="flex flex-col items-center gap-1 text-primary">
+            <span class="material-symbols-outlined text-2xl">home</span>
+            <span class="text-[10px] font-bold uppercase tracking-tighter">Início</span>
+        </a>
+        <a href="#servicos" class="flex flex-col items-center gap-1 text-on-surface-variant">
+            <span class="material-symbols-outlined text-2xl">grid_view</span>
+            <span class="text-[10px] font-bold uppercase tracking-tighter">Serviços</span>
+        </a>
+        
+        <!-- Center WhatsApp Highlight -->
+        <a href="https://api.whatsapp.com/send/?phone=5527995285539" target="_blank" 
+           class="flex flex-col items-center -translate-y-6">
+            <div class="w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg flex items-center justify-center animate-whatsapp border-4 border-white">
+                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                </svg>
+            </div>
+        </a>
+
+        <a href="#planos" class="flex flex-col items-center gap-1 text-on-surface-variant">
+            <span class="material-symbols-outlined text-2xl">payments</span>
+            <span class="text-[10px] font-bold uppercase tracking-tighter">Planos</span>
+        </a>
+        <button id="bottom-menu-toggle" class="flex flex-col items-center gap-1 text-on-surface-variant">
+            <span class="material-symbols-outlined text-2xl">menu</span>
+            <span class="text-[10px] font-bold uppercase tracking-tighter">Menu</span>
+        </button>
+    </div>
+
+    <!-- Floating WhatsApp (Desktop Only) -->
     <a href="https://api.whatsapp.com/send/?phone=5527995285539" target="_blank"
-        class="fixed bottom-6 right-6 z-[60] w-16 h-16 bg-[#25D366] text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform active:scale-95">
+        class="hidden md:flex fixed bottom-6 right-6 z-[60] w-16 h-16 bg-[#25D366] text-white rounded-full shadow-2xl items-center justify-center hover:scale-110 transition-transform active:scale-95 animate-whatsapp">
         <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
             <path
                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
@@ -1044,17 +1113,20 @@
     <script>
         // Menu Mobile
         const toggle = document.getElementById('menu-toggle');
+        const bottomToggle = document.getElementById('bottom-menu-toggle');
         const close = document.getElementById('menu-close');
         const menu = document.getElementById('mobile-menu');
         const body = document.body;
 
         function toggleMenu() {
             menu.classList.toggle('translate-x-full');
+            menu.classList.toggle('active');
             body.classList.toggle('mobile-menu-open');
         }
 
-        toggle.addEventListener('click', toggleMenu);
-        close.addEventListener('click', toggleMenu);
+        if (toggle) toggle.addEventListener('click', toggleMenu);
+        if (bottomToggle) bottomToggle.addEventListener('click', toggleMenu);
+        if (close) close.addEventListener('click', toggleMenu);
 
         document.querySelectorAll('.mobile-link').forEach(link => {
             link.addEventListener('click', toggleMenu);
